@@ -5,13 +5,14 @@ import BookList from "./components/BookList";
 function App() {
   const [books, setBooks] = useState([]);
 
-  const fetchBooks = () => {
-    const localBooks = JSON.parse(localStorage.getItem("books"));
-    setBooks(localBooks ? localBooks : books);
-  };
+  // const fetchBooks = () => {
+  //   const localBooks = JSON.parse(localStorage.getItem("books"));
+  //   setBooks(localBooks ? localBooks : books);
+  // };
 
   useEffect(() => {
-    fetchBooks();
+    const localBooks = JSON.parse(localStorage.getItem("books"));
+    setBooks(localBooks ? localBooks : []);
   }, []);
 
   const editBookById = (id, newTitle, checked) => {
