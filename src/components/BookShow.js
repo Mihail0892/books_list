@@ -25,7 +25,7 @@ const BookShow = ({ book, onDelete, onEdit }) => {
   return (
     <>
       <div className="book-show">
-        <div style={{ backgroundColor:book.reading? "green" : "red", width: "20px", height: "20px",borderRadius:"50%", position:"absolute", top:"7px"}}></div>
+        <div style={{ backgroundColor:book.checked? "green" : "red", width: "20px", height: "20px",borderRadius:"50%", position:"absolute", top:"7px"}}></div>
         <img alt="books" src={`https://picsum.photos/seed/${book.id}300/200`} />
         <div>{content}</div>
         <div className="actions">

@@ -1,51 +1,48 @@
 import React, { useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
-import axios from "axios";
 
 function App() {
   const [books, setBooks] = useState([]);
 
-  const fetchBooks = async () => {
-    const response = await axios.get("http://localhost:3001/books");
-    setBooks(response.data);
+  const fetchBooks = () => {
+    const localBooks = JSON.parse(localStorage.getItem("books"));
+    setBooks(localBooks ? localBooks : books);
   };
 
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  const editBookById = async (id, newTitle,checked) => {
-    const response = await axios.put(`http://localhost:3001/books/${id}`, {
-      title: newTitle,
-      reading: checked,
-    });
-
+  const editBookById = (id, newTitle, checked) => {
     const updatedBooks = books.map((book) => {
       if (book.id === id) {
-        return { ...book, ...response.data };
+        return { ...book, title: newTitle, checked: checked };
       }
       return book;
     });
     setBooks(updatedBooks);
+    localStorage.setItem("books", JSON.stringify(updatedBooks));
   };
 
-  const createBook = async (title) => {
-    const response = await axios.post("http://localhost:3001/books", {
-      title: title,
-    });
-
-    const updatedBooks = [...books, response.data];
+  const createBook = (title) => {
+    const updatedBooks = [
+      ...books,
+      {
+        id: Math.round(Math.random() * 9999),
+        title: title,
+      },
+    ];
     setBooks(updatedBooks);
+    localStorage.setItem("books", JSON.stringify(updatedBooks));
   };
 
-  const deleteBookById = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}`);
-
+  const deleteBookById = (id) => {
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
     });
     setBooks(updatedBooks);
+    localStorage.setItem("books", JSON.stringify(updatedBooks));
   };
 
   return (

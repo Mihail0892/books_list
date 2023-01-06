@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const BookEdit = ({ book, onSubmit }) => {
   const [title, setTitle] = useState(book.title);
-  const [checked,setChecked] = useState(book.reading);
+  const [checked,setChecked] = useState(book.checked);
 
   const handleChange = (e) => {
     setTitle(e.target.value);
