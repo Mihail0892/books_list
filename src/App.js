@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import picture from "./assets/2.jpg";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -49,7 +50,15 @@ function App() {
   return (
     <div className="app">
       <h1>Підбірка книжок</h1>
-      <BookList onEdit={editBookById} books={books} onDelete={deleteBookById} />
+      {books.length === 0 ? (
+        <img   src={picture} alt='egeg'></img>
+      ) : (
+        <BookList
+          onEdit={editBookById}
+          books={books}
+          onDelete={deleteBookById}
+        />
+      )}
       <BookCreate onCreate={createBook} />
     </div>
   );

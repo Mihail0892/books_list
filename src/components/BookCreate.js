@@ -16,7 +16,7 @@ const BookCreate = ({ onCreate }) => {
   };
 
   return (
-    <div className="book-create">
+    <div className="book-create" style={{zIndex:5000}}>
       <h3>Додати книжку</h3>
       <form onSubmit={handleSubmit}>
         <label>Назва</label>

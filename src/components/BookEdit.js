@@ -21,7 +21,7 @@ const BookEdit = ({ book, onSubmit }) => {
       <input className="input" value={title} onChange={handleChange} />
       <label>Читаю зараз</label>
       <input type="checkbox" checked={checked} onChange={()=> setChecked(!checked)}/>
-      <button className="button is-primary">Редагувати</button>
+      <button className="button is-primary" >Редагувати</button>
     </form>
   );
 };
